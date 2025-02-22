@@ -7,18 +7,14 @@ app = Flask(__name__)
 
 @app.route('/htop')
 def htop():
-    # Get your full name and system username
-    full_name = "Somnath Choudhury"  # Replace with your full name
+    full_name = "Somnath Choudhury"
     username = subprocess.getoutput('whoami')
 
-    # Get server time in IST
     ist = pytz.timezone('Asia/Kolkata')
     server_time = datetime.now(ist).strftime('%Y-%m-%d %H:%M:%S')
 
-    # Get top output
     top_output = subprocess.getoutput('top -b -n 1 | head -n 20')
 
-    # Format the response
     response = (
         f"Name - {full_name}<br>"
         f"Username - {username}<br>"
